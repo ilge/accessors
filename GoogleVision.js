@@ -20,29 +20,15 @@
 // CALIFORNIA HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES,
 // ENHANCEMENTS, OR MODIFICATIONS.
 
-/** Retrieve a location given an address.
- *  The location is given as an object with two numeric fields,
- *  "latitude" and "longitude". For example,
- *  `{"latitude": 37.85, "longitude": -122.26}` is
- *  the location of Berkeley, California.
- *
- *  This accessor requires a "key" for the Google Geocoding API, which you can
- *  obtain for free at https://developers.google.com/maps/documentation/geocoding/intro .
- *
- *  This accessor does not block waiting for the response, but if any additional
- *  *address* input is received before a pending request has received a response
- *  or timed out, then the new request will be queued and sent out only after
- *  the pending request has completed. This strategy ensures that outputs are
- *  produced in the same order as the input requests.
- *
- *  @accessor services/GeoCoder
+/** Google image processiong API.
+ *  @accessor services/GoogleVision
  *  @input {string} address The address, for example "Berkeley, CA".
  *  @output location The location, as an object with a 'latitude' and 'longitude'
  *   property.
  *  @parameter {string} key The key for the Google geocoding API.
  *  @output response An object containing the location information.
- *  @author Edward A. Lee
- *  @version $$Id: GeoCoder.js 546 2016-02-03 02:07:57Z cxh $$
+ *  @author Ilge Akkaya
+ *  @version $$Id$$
  */
 
 // Stop extra messages from jslint and jshint.  Note that there should
@@ -79,11 +65,7 @@ exports.setup = function() {
 exports.initialize = function() {
     // Be sure to call the superclass so that the trigger input handler gets registered.
     exports.ssuper.initialize.call(this);
-    
-    //var key = this.getParameter('key');
-    //if (key == "Enter Key Here") {
-    //    throw "GeoCoder:  You need a key, which you can obtain at https://developers.google.com/maps/documentation/geocoding/intro.";
-    //}
+     
     var self = this;
     
     // Handle location information.
